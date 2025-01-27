@@ -30,5 +30,15 @@
     },
     "peerDependencies": {
         "whatwg-url": "7.1.0"
+    },
+    "agentConfig": {
+        "pluginType": "elizaos:client:1.0.0",
+        "pluginParameters": {
+            "OPEN_WEATHER_API_KEY": {
+                "type": "string",
+                "minLength": 1,
+                "description": "OpenWeather API key is required"
+            }
+        }
     }
 }
