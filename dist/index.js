@@ -180,12 +180,13 @@ var getCurrentWeatherAction = {
     return true;
   },
   handler: async (runtime, message, state, _options, callback) => {
-    if (!state) {
-      state = await runtime.composeState(message);
+    let currentState = state;
+    if (!currentState) {
+      currentState = await runtime.composeState(message);
     }
-    state = await runtime.updateRecentMessageState(state);
+    currentState = await runtime.updateRecentMessageState(currentState);
     const weatherContext = composeContext({
-      state,
+      state: currentState,
       template: getCurrentWeatherTemplate
     });
     const content = await generateMessageResponse({
