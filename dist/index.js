@@ -148,7 +148,7 @@ var createWeatherService = (apiKey) => {
       const response = await fetch(url);
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error?.message || response.statusText);
+        throw new Error((error == null ? void 0 : error.message) || response.statusText);
       }
       const data = await response.json();
       return data;
@@ -194,7 +194,7 @@ var getCurrentWeatherAction = {
       context: weatherContext,
       modelClass: ModelClass.SMALL
     });
-    const hasLocation = content?.city && content?.country && !content?.error;
+    const hasLocation = (content == null ? void 0 : content.city) && (content == null ? void 0 : content.country) && !(content == null ? void 0 : content.error);
     if (!hasLocation) {
       return;
     }
@@ -204,8 +204,8 @@ var getCurrentWeatherAction = {
     );
     try {
       const weatherData = await weatherService.getWeather(
-        String(content?.city || ""),
-        content?.country ? String(content?.country) : void 0
+        String((content == null ? void 0 : content.city) || ""),
+        (content == null ? void 0 : content.country) ? String(content == null ? void 0 : content.country) : void 0
       );
       elizaLogger.success(
         `Successfully fetched weather for ${content.city}, ${content.country}`
